@@ -7,5 +7,5 @@ When("the calculator is run") do
 end
 
 Then("the output should be {string}") do |string|
-  @output == string
+  expect(@output).to eq string
 end
