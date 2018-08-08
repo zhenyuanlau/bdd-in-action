@@ -13,13 +13,23 @@ class Teller
   end
 end
 
-module KnowsMyAccount
-  def my_account
-    @my_account ||= Account.new
+class CashSlot
+  def contents
+    raise "I'm empty!"
   end
 end
 
-World KnowsMyAccount
+module KnowsTheDomain
+  def my_account
+    @my_account ||= Account.new
+  end
+
+  def cash_slot
+    @cash_slot ||= CashSlot.new
+  end
+end
+
+World KnowsTheDomain
 
 Given("I have ${int} in my Account") do |amount|
   my_account = Account.new
