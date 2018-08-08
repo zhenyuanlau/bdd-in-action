@@ -10,4 +10,6 @@ cucumber --format progress
 
 cucumber test.feature --dry-run # 解析而不执行
 
+cucumber --tags @common
+
 ```
