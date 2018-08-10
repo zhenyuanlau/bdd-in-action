@@ -1,6 +1,7 @@
 source "https://gems.ruby-china.com"
 
 gem 'sinatra'
+gem 'service_manager'
 
 group :development do
   gem 'rspec'
