@@ -1,0 +1,5 @@
+require 'cucumber/rake/task'
+
+Cucumber::Rake::Task.new('cucumber_progress') do |t|
+  t.cucumber_opts = %w(--format progress)
+end
