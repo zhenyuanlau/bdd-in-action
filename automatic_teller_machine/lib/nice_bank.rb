@@ -1,25 +1,5 @@
-require 'sinatra'
 require_relative 'transaction_queue'
-require_relative 'balance_store'
-
-class Account
-  def initialize
-    @queue = TransactionQueue.new
-    @balance_store = BalanceStore.new
-  end
-
-  def balance
-    @balance_store.balance
-  end
-
-  def credit(amount)
-    @queue.write("+#{amount}")
-  end
-
-  def debit(amount)
-    @queue.write("-#{amount}")
-  end
-end
+require_relative 'account'
 
 class Teller
   def initialize(cash_slot)
@@ -42,6 +22,8 @@ class CashSlot
   end
 end
 
+require 'sinatra'
+
 get '/' do
   %{
     <html>
@@ -60,6 +42,7 @@ set :cash_slot, CashSlot.new
 set :account do
   fail 'account has not been set'
 end
+
 post '/withdraw' do
   teller = Teller.new(settings.cash_slot)
   teller.withdraw_from(settings.account, params[:amount].to_i)
